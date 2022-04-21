@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/19 18:34:47 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/21 16:21:59 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int	read_file(char *file_name, t_fdf *data)
 		free(line);
 		i++;
 	}
+//	data->height--;
 	free(line);
 	close(fd);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/20 18:55:55 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/21 19:37:59 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,33 @@ float	sign(float i)
 		return (i);
 }
 
-void	isometric(t_basic *pos)
+void	isometric(float x, float y, int z)
 {
-	pos->x = (pos->x - pos->y) * cos(0.8);
-	pos->y = (pos->x + pos->y) * sin(0.8) - z;
+//	int x_tmp;
+
+//	x_tmp = (int)x;
+	x = (x - y) * cos (0.8);
+	y = (x + y) * sin (0.8) - z;
 }
+
+void isometric_test(t_basic *pos, int z_pos, int flag)
+{
+	int x_tmp;
+	
+	if (flag == 1)
+	{
+		x_tmp = (int)pos->x;
+		pos->x = (pos->x - pos->y) * cos(0.523599);//завести tmp для икса
+		pos->y = (x_tmp + pos->y) * sin(0.523599) - z_pos;
+	}
+	else
+	{
+		x_tmp = (int)pos->x1;
+		pos->x1 = (pos->x1 - pos->y1) * cos(0.523599);//завести tmp для икса
+		pos->y1 = (x_tmp + pos->y1) * sin(0.523599) - z_pos;
+	}
+}
+
 void get_zoom(t_basic *pos, t_fdf *data)
 {
 	pos->x *= data->zoom;
@@ -48,16 +70,30 @@ void get_zoom(t_basic *pos, t_fdf *data)
 	pos->y *= data->zoom;
 	pos->y1 *= data->zoom;
 }
+
 void	draw_lines(t_basic *pos, t_fdf *data)
 {
 	t_basic	pos_tmp;
 	float	x_steps;
 	float	y_steps;
 	int		max;
+	int		z;
+	int		z1;
 
 	pos_tmp = *pos;
+	z = data->z_matrix[(int)pos_tmp.y][(int)pos_tmp.x];
+	z1 = data->z_matrix[(int)pos_tmp.y1][(int)pos_tmp.x1];
 	get_zoom(&pos_tmp, data);
-	
+	// isometric(pos_tmp.x, pos_tmp.y, z);
+	// isometric(pos_tmp.x1, pos_tmp.y1, z1);
+	//isometric(pos->x, pos->y, z);
+	//isometric(pos->x1, pos->y1, z1);
+	isometric_test(&pos_tmp, z, 1);
+	isometric_test(&pos_tmp, z1, 2);
+	pos_tmp.x += 300;
+	pos_tmp.y += 200;
+	pos_tmp.x1 += 300;
+	pos_tmp.y1 += 200;
 	x_steps = pos_tmp.x1 - pos_tmp.x;
 	y_steps = pos_tmp.y1 - pos_tmp.y;
 	max = max_steps(sign(x_steps), sign(y_steps));
@@ -75,17 +111,12 @@ void	draw_lines(t_basic *pos, t_fdf *data)
 void	draw_matrix(t_fdf *data)
 {
 	t_basic	*pos;
-	int		z;
-	int		z1;
-
-	z = data->z_matrix[(int)pos->y + 1][(int)pos->x];
-	z1 = data->z_matrix[(int)pos->y1][(int)pos->x1];
 
 	pos = malloc(sizeof(t_basic));
 	if (!pos)
 		return ;
 	pos_init(pos);
-	if (data->width > 9)
+		if (data->width > 9)
 		data->zoom = (int)rintf(55 / rintf((float) data->width / 10));
 	else
 		data->zoom = 20;	
@@ -103,6 +134,7 @@ void	draw_matrix(t_fdf *data)
 			pos->y1 = pos->y + 1;
 			if (pos->y < data->width - 1)
 				draw_lines(pos, data);
+			//while (1);
 			pos->x++;
 		}
 		pos->x1 = pos->x;
@@ -113,3 +145,10 @@ void	draw_matrix(t_fdf *data)
 	pos->x = 0;
 	draw_lines(pos, data);
 }
+
+/*/ 
+-сравнить с видосом
+-продебажить в тех случаях когда программа запускается но не выдает нужный результат
+-сравнить логику с цветом
+-переписать код и сделать читаемым
+/*/

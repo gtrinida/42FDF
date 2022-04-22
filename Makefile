@@ -14,7 +14,8 @@ NAME = fdf
 SRCS = fdf.c\
  		draw_lines.c\
  		read.c\
- 		utills.c
+ 		utils.c\
+		draw_utils.c
 OBJS = $(SRCS:%.c=%.o)
 
 UNAME := $(shell uname)

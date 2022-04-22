@@ -6,16 +6,17 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/21 19:37:59 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/22 15:57:54 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void is_it_voluminous(t_fdf *data, t_basic *pos)
+void get_color(t_fdf *data, t_basic *pos)
 {
-	if (data->z_matrix[(int)pos->y + 1][(int)pos->x])
-		data->color = 0xa020f0;
+	if (data->z_matrix[(int)pos->y][(int)pos->x] ||
+	data->z_matrix[(int)pos->y1][(int)pos->x1])
+		data->color = 0xff4500;// 0xa020f0;
 	else
 		data->color = 0xffffff;
 }
@@ -45,7 +46,7 @@ void	isometric(float x, float y, int z)
 	y = (x + y) * sin (0.8) - z;
 }
 
-void isometric_test(t_basic *pos, int z_pos, int flag)
+void get_3d(t_basic *pos, int z_pos, int flag)
 {
 	int x_tmp;
 	
@@ -84,12 +85,9 @@ void	draw_lines(t_basic *pos, t_fdf *data)
 	z = data->z_matrix[(int)pos_tmp.y][(int)pos_tmp.x];
 	z1 = data->z_matrix[(int)pos_tmp.y1][(int)pos_tmp.x1];
 	get_zoom(&pos_tmp, data);
-	// isometric(pos_tmp.x, pos_tmp.y, z);
-	// isometric(pos_tmp.x1, pos_tmp.y1, z1);
-	//isometric(pos->x, pos->y, z);
-	//isometric(pos->x1, pos->y1, z1);
-	isometric_test(&pos_tmp, z, 1);
-	isometric_test(&pos_tmp, z1, 2);
+	get_3d(&pos_tmp, z, 1);
+	get_3d(&pos_tmp, z1, 2);
+	get_color(data, pos);
 	pos_tmp.x += 300;
 	pos_tmp.y += 200;
 	pos_tmp.x1 += 300;
@@ -125,7 +123,7 @@ void	draw_matrix(t_fdf *data)
 		pos->x = 0;
 		while (pos->x < data->width - 1)
 		{
-			is_it_voluminous(data, pos);
+			//is_it_voluminous(data, pos);
 			pos->x1 = pos->x + 1;
 			pos->y1 = pos->y;
 			if (pos->x < data->width - 1)
@@ -134,7 +132,6 @@ void	draw_matrix(t_fdf *data)
 			pos->y1 = pos->y + 1;
 			if (pos->y < data->width - 1)
 				draw_lines(pos, data);
-			//while (1);
 			pos->x++;
 		}
 		pos->x1 = pos->x;
@@ -145,10 +142,3 @@ void	draw_matrix(t_fdf *data)
 	pos->x = 0;
 	draw_lines(pos, data);
 }
-
-/*/ 
--сравнить с видосом
--продебажить в тех случаях когда программа запускается но не выдает нужный результат
--сравнить логику с цветом
--переписать код и сделать читаемым
-/*/

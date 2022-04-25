@@ -6,16 +6,16 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 15:21:18 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/03/21 22:34:46 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/25 17:01:19 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strdup_extra(const char *str, int flag)
+char	*ft_strdup_extra(const char *str, int flag)
 {
-	char *res;
-	size_t i;
+	char	*res;
+	size_t	i;
 
 	i = 0;
 	res = malloc(ft_strlen(str) + 2);

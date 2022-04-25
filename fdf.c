@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/25 13:54:48 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/25 16:47:29 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int argc, char **argv)
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, 1920, 1080, "FDF");
 	draw_matrix(data);
-	mlx_hook(data->win_ptr, 2, 1L<<0, close, data);
+	mlx_hook(data->win_ptr, 2, 1L << 0, close, data);
 	mlx_loop(data->mlx_ptr);
 	clean_matrix(data);
 }

@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:01:23 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/25 14:34:27 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/25 16:52:15 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void	isometric(t_coordinates *pos, int flag)
 	if (flag == 1)
 	{
 		x_tmp = (int)pos->x;
-		pos->x = (pos->x - pos->y) * cos(0.523599);
-		pos->y = (x_tmp + pos->y) * sin(0.523599) - pos->z_pos;
+		pos->x = (pos->x - pos->y) * cos(0.6);
+		pos->y = (x_tmp + pos->y) * sin(0.6) - pos->z_pos;
 	}
 	else
 	{
 		x_tmp = (int)pos->x1;
-		pos->x1 = (pos->x1 - pos->y1) * cos(0.523599);
-		pos->y1 = (x_tmp + pos->y1) * sin(0.523599) - pos->z1_pos;
+		pos->x1 = (pos->x1 - pos->y1) * cos(0.6);
+		pos->y1 = (x_tmp + pos->y1) * sin(0.6) - pos->z1_pos;
 	}
 }
 

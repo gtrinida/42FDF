@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/25 15:50:08 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/25 17:00:14 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ int	read_file(char *file_name, t_fdf *data)
 		free(line);
 		i++;
 	}
-//	data->height--;
-	printf("Heigh is: %d\nWidth is: %d\n", data->height, data->width);
 	free(line);
 	close(fd);
 	return (1);

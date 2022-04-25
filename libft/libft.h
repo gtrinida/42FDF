@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:41:26 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/04 18:17:11 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/25 17:01:53 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int		ft_toupper(int c);
 size_t	ft_strlcat(char *buf, const char *source, size_t size);
 size_t	ft_strlcpy(char *buf, const char *source, size_t bufsize);
 size_t	ft_strlen(const char *str);
-
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42

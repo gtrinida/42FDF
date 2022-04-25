@@ -6,38 +6,30 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/21 16:21:59 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/25 14:05:15 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	check_width(char *line)
+int	ft_wdcounter(const char *str, char separator)
 {
 	int	i;
-	int	flag;
-	int	len;
+	int	finded;
+	int	counter;
 
-	len = 0;
-	flag = 0;
 	i = 0;
-	while (line[i])
+	finded = 0;
+	counter = 0;
+	while (str[i] != '\0')
 	{
-		if (line[i] == '-' && line[i + 1] >= '0' && line[i + 1] <= '9' && !flag)
-		{
-			len++;
-			flag = 1;
-		}
-		if (line[i] >= '0' && line[i] <= '9' && !flag)
-		{
-			len++;
-			flag = 1;
-		}
-		else
-			flag = 0;
+		if (str[i] != ' ' && finded == 0 && ++counter)
+			finded = 1;
+		else if (str[i] == separator)
+			finded = 0;
 		i++;
 	}
-	return (len);
+	return (counter);
 }
 
 void	get_hight(char *file_name, t_fdf *data)
@@ -63,7 +55,7 @@ void	get_width(char *file_name, t_fdf *data)
 
 	fd = open(file_name, O_RDONLY);
 	get_next_line(fd, &line);
-	data->width = check_width(line);
+	data->width = ft_wdcounter(line, ' ');
 	free(line);
 	while (get_next_line(fd, &line) > 0)
 		free(line);
@@ -111,6 +103,7 @@ int	read_file(char *file_name, t_fdf *data)
 		i++;
 	}
 //	data->height--;
+	printf("Heigh is: %d\nWidth is: %d\n", data->height, data->width);
 	free(line);
 	close(fd);
 	return (1);

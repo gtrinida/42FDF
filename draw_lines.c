@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:17:16 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/22 18:50:10 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/25 15:57:38 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,33 @@ int	draw_matrix(t_fdf *data)
 	if (!pos)
 		return (0);
 	pos_init(pos);
-	while (pos->y < data->height - 1)
+	// while (pos->y < data->height - 1)
+	// {
+	// 	coordinates_setting(pos, data);
+	// 	pos->y++;
+	// }
+	while (pos->y < data->height)
 	{
-		coordinates_setting(pos, data);
+		pos->x = 0;
+		while (pos->x < data->width)
+		{
+			if (pos->x < data->width - 1)
+			{
+				pos->x1 = pos->x + 1;
+				pos->y1 = pos->y;
+				draw_line(pos, data);
+			}
+			if(pos->y < data->height - 1)
+			{
+				pos->x1 = pos->x;
+				pos->y1 = pos->y + 1;
+				draw_line(pos, data);
+			}
+			pos->x++;
+		}
 		pos->y++;
 	}
-	pos->x = 0;
-	draw_line(pos, data);
+	// pos->x = 0;
+	// draw_line(pos, data);
 	return (1);
 }

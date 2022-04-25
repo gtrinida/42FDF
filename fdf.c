@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/20 15:42:44 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/25 13:54:48 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ void	initialize(t_fdf *data)
 	data->zoom = 0;
 }
 
-int	deal_key(int key, void *data)
-{
-	(void)data;
-	printf("%d", key);
-	return (0);
-}
+// int	close(int key, t_fdf *data)
+// {
+// 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+// 	return (0);
+// }
 
 int	main(int argc, char **argv)
 {
@@ -60,9 +59,9 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 1000, 1000, "FDF");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 1920, 1080, "FDF");
 	draw_matrix(data);
-	mlx_key_hook(data->win_ptr, deal_key, NULL);
+	mlx_hook(data->win_ptr, 2, 1L<<0, close, data);
 	mlx_loop(data->mlx_ptr);
 	clean_matrix(data);
 }

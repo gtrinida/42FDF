@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:01:23 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/22 18:53:43 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/25 14:34:27 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	position(t_coordinates *pos_tmp)
 {
-	pos_tmp->x += 300;
-	pos_tmp->y += 200;
-	pos_tmp->x1 += 300;
-	pos_tmp->y1 += 200;
+	pos_tmp->x += 600;
+	pos_tmp->y += 300;
+	pos_tmp->x1 += 600;
+	pos_tmp->y1 += 300;
 }
 
 void	color(t_coordinates *pos_tmp, t_fdf *data)
@@ -64,7 +64,7 @@ void	zoom(t_coordinates *pos_tmp, t_fdf *data)
 	if (data->width > 9)
 		data->zoom = (int)rintf(55 / rintf((float) data->width / 10));
 	else
-		data->zoom = 20;
+		data->zoom = 50;
 	pos_tmp->x *= data->zoom;
 	pos_tmp->x1 *= data->zoom;
 	pos_tmp->y *= data->zoom;

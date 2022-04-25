@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/22 18:48:48 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/25 17:09:50 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@ void	zoom(t_coordinates *pos_tmp, t_fdf *data);
 void	isometric(t_coordinates *pos, int flag);
 void	color(t_coordinates *pos_tmp, t_fdf *data);
 void	position(t_coordinates *pos_tmp);
+
+# define KEY_EXIT 53
 
 #endif

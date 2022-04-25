@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/25 16:47:29 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/25 17:58:53 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,23 @@ void	initialize(t_fdf *data)
 	data->zoom = 0;
 }
 
-// int	close(int key, t_fdf *data)
-// {
-// 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-// 	return (0);
-// }
+int	close_window(int key, t_fdf *data)
+{
+	if (key == KEY_EXIT)
+	{
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		clean_matrix(data);
+		exit(0);
+	}
+	return (0);
+}
+
+int	close_f(t_fdf *data)
+{
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	clean_matrix(data);
+	exit(0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -61,7 +73,8 @@ int	main(int argc, char **argv)
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, 1920, 1080, "FDF");
 	draw_matrix(data);
-	mlx_hook(data->win_ptr, 2, 1L << 0, close, data);
+	mlx_hook(data->win_ptr, 2, 1L << 0, close_window, data);
+	mlx_hook(data->win_ptr, 17, 0, close_f, data);
 	mlx_loop(data->mlx_ptr);
 	clean_matrix(data);
 }

@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:17:16 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/25 16:51:12 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:22:58 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ int	draw_matrix(t_fdf *data)
 	pos_init(pos);
 	while (pos->y < data->height)
 		draw_matrix_utils(data, pos);
+	free(pos);
 	return (1);
 }

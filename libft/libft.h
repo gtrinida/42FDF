@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:41:26 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/25 17:01:53 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/25 19:35:13 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strdup_extra(const char *str, int flag);
 
-int		get_next_line(int fd, char **line);
+char	*get_next_line(int fd);
 int		ft_n_len(int n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_tolower(int c);

@@ -1,13 +1,10 @@
-INC = /usr/include
-INCLIB = $(INC)/minilibx-linux/lib
+INC = .
 INCLUDES = fdf.h
-
-MAC_MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
-MAC_MINILIBX_DIRECTORY = minilibx_macos
-MAC_MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
+MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
+MINILIBX_DIRECTORY = minilibx_macos
+MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
 CC = gcc
-
 CFLAGS = -Wall -Wextra -Werror -I$(INC) -g -Ilibft
 
 NAME = fdf
@@ -18,18 +15,7 @@ SRCS = fdf.c\
 		draw_utils.c
 OBJS = $(SRCS:%.c=%.o)
 
-UNAME := $(shell uname)
-ifeq ($(UNAME), Darwin)
-	# MacOS
-	LFLAGS = -lmlx -lm -L$(MAC_MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
-else
-	# Linux
-	LFLAGS = -Lminilibx-linux -lmlx -L$(INCLIB) -lXext -lX11 -lm -lbsd
-	CFLAGS += -Iminilibx-linux
-endif
-
-%.o: %.c $(INCLUDES)
-	$(CC) $(CFLAGS) -c $<
+LFLAGS = -lmlx -lm -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
 
 $(NAME): $(OBJS)
 	@make -C libft

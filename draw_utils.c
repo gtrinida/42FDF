@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:01:23 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/25 16:52:15 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:06:04 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,6 @@ void	color(t_coordinates *pos_tmp, t_fdf *data)
 	else
 		data->color = 0xffffff;
 }
-
-// void	isometric(t_coordinates *pos) почему-то не работает можно пофиксить
-// {
-// 	int	x_tmp;
-
-// 	x_tmp = (int)pos->x;
-// 	pos->x = (pos->x - pos->y) * cos(0.523599);
-// 	pos->y = (x_tmp + pos->y) * sin(0.523599) - pos->z_pos;
-// 	x_tmp = (int)pos->x1;
-// 	pos->x1 = (pos->x1 - pos->y) * cos(0.523599);
-// 	pos->y1 = (x_tmp + pos->y1) * sin(0.523599) - pos->z1_pos;
-// }
 
 void	isometric(t_coordinates *pos, int flag)
 {

@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/25 20:25:11 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:30:15 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int argc, char **argv)
 	if (!data)
 		return (0);
 	initialize(data);
-	if (!read_file(argv[1], data))
+	if (!valid_format(argv[1]) || !read_file(argv[1], data))
 	{
 		write(1, "Invalid file name or the file is empty\n", 39);
 		free(data);

@@ -40,6 +40,7 @@ LIST_MAIN = ft_memcpy.c\
 		ft_putendl_fd.c\
 		ft_putnbr_fd.c\
 		ft_strcpy.c\
+		ft_wdcounter.c\
 		get_next_line.c
 	
 OBJS = ${LIST_MAIN:.c=.o}

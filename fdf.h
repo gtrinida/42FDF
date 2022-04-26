@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/25 20:13:37 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/26 17:31:19 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_fdf
 	int		**z_matrix;
 	int		zoom;
 	int		color;
+	int		shift_x;
+	int		shift_y;
 	void	*mlx_ptr;
 	void	*win_ptr;
 }t_fdf;
@@ -58,9 +60,12 @@ void	pos_init(t_coordinates *pos);
 void	zoom(t_coordinates *pos_tmp, t_fdf *data);
 void	isometric(t_coordinates *pos, int flag);
 void	color(t_coordinates *pos_tmp, t_fdf *data);
-void	position(t_coordinates *pos_tmp);
+void    position(t_coordinates *pos_tmp);
 int		valid(char *line);
 int		ft_wdcounter(const char *str, char separator);
+void	clean_matrix(t_fdf *data);
+int		valid_format(char *file_name);
+
 # define KEY_EXIT 53
 
 #endif

@@ -6,46 +6,45 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/25 20:26:58 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/26 17:31:47 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	ft_wdcounter(const char *str, char separator)
+int	valid_format(char *file_name)
 {
 	int	i;
-	int	finded;
-	int	counter;
 
 	i = 0;
-	finded = 0;
-	counter = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] != ' ' && finded == 0 && ++counter)
-			finded = 1;
-		else if (str[i] == separator)
-			finded = 0;
+	while (file_name[i])
 		i++;
-	}
-	return (counter);
+	if (file_name[i - 1] != 'f' && file_name[i - 2] != 'd'
+			&& file_name[i - 3] != 'f' && file_name[i - 4] != '.')
+		return (0);
+	else
+		return (1);
 }
 
-int valid(char *line)
+int	valid(char *line)
 {
 	int	i;
 
 	i = 0;
+
 	while (line[i])
 	{
-		if (line[i] == '-' || line[i] == '+'
-		|| (line[i] >= '0' && line[i] <= '9'))
+		if ((line[i] >= '0' && line[i] <= '9') || line[i] == ' ' || line[i] == '-' || line[i] == '\n')
 			i++;
-		else
+		else if (line[i] == ',')
+		{	
+			while ((line[i] != ' ' && line[i]))
+				i++;	
+		}
+		else if (line[i])
 			return (0);
-	}
-	return (1);
+	}	
+	return (1);	
 }
 
 void	pos_init(t_coordinates *pos)

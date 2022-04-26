@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/25 20:27:13 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/26 18:52:12 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	get_matrix_full(char *line, int *z_line)
 
 void	read_file_utils(char *file_name, t_fdf *data)
 {
-	int	fd;
-	char *line;
-	int	i;
+	int		fd;
+	char	*line;
+	int		i;
 
 	i = 0;
 	fd = open(file_name, O_RDONLY);
@@ -58,6 +58,12 @@ void	get_hight(char *file_name, t_fdf *data)
 	line = get_next_line(fd);
 	while (line)
 	{
+		if (!valid(line))
+		{
+			free(line);
+			write(1, "Invalid map\n", 12);
+			exit(0);
+		}
 		data->height++;
 		free(line);
 		line = get_next_line(fd);
@@ -94,8 +100,8 @@ int	read_file(char *file_name, t_fdf *data)
 	if (fd == -1 || read(fd, NULL, 0) < 0
 		|| !is_it_empty(file_name))
 		return (0);
-	get_hight(file_name, data);
 	get_width(file_name, data);
+	get_hight(file_name, data);
 	data->z_matrix = ft_calloc_2d(data->height, data->width);
 	if (!data->z_matrix)
 		return (0);

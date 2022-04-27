@@ -6,27 +6,41 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:17:16 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/26 15:03:44 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:14:35 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-float	max_steps(int x, int y)
+void	put_pixel_img(t_img *prm, int x, int y, int color)
 {
+	char	*dst;
+
+	if (x > 1199 || y > 999 || x < 0 || y < 0)
+		return ;
+	dst = prm->addr + (y * prm->line_length + x * (prm->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
+float	max_steps(float x, float y)
+{
+	if (x < 0)
+		x *= -1;
+	if (y < 0)
+		y *= -1;
 	if (x > y)
 		return (x);
 	else
 		return (y);
 }
 
-float	sign(float i)
-{
-	if (i < 0)
-		return (i *= -1);
-	else
-		return (i);
-}
+// float	sign(float i)
+// {
+// 	if (i < 0)
+// 		return (i *= -1);
+// 	else
+// 		return (i);
+// }
 
 void	draw_line(t_coordinates *pos, t_fdf *data)
 {
@@ -45,13 +59,13 @@ void	draw_line(t_coordinates *pos, t_fdf *data)
 	position(&pos_tmp);
 	x_steps = pos_tmp.x1 - pos_tmp.x;
 	y_steps = pos_tmp.y1 - pos_tmp.y;
-	max = max_steps(sign(x_steps), sign(y_steps));
+	max = max_steps(x_steps, y_steps);
 	x_steps /= max;
 	y_steps /= max;
 	while ((int)(pos_tmp.x - pos_tmp.x1) || (int)(pos_tmp.y - pos_tmp.y1))
 	{
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, (int)pos_tmp.x,
-			(int)pos_tmp.y, data->color);
+		put_pixel_img(data->img, (int)roundl(pos_tmp.x),
+			(int)roundl(pos_tmp.y), data->color);
 		pos_tmp.x += x_steps;
 		pos_tmp.y += y_steps;
 	}

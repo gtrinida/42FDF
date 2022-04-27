@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:01:23 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/26 15:06:04 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:31:06 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,14 @@ void	zoom(t_coordinates *pos_tmp, t_fdf *data)
 	pos_tmp->x1 *= data->zoom;
 	pos_tmp->y *= data->zoom;
 	pos_tmp->y1 *= data->zoom;
+}
+
+void	work_with_win(t_fdf *data)
+{
+	data->mlx_ptr = mlx_init();
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 1200, 1000, "FDF");
+	data->img->img = mlx_new_image(data->mlx_ptr, 1200, 1000);
+	data->img->addr = mlx_get_data_addr(data->img->img,
+			&data->img->bits_per_pixel,
+			&data->img->line_length, &data->img->endian);
 }

@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/27 11:53:37 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:28:00 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	clean_matrix(t_fdf *data)
 		i++;
 	}
 	free(data->z_matrix);
+	free(data->img);
 	free(data);
 }
 
@@ -60,25 +61,25 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		write(1, "Invalid number of arguments, ", 29);
-		write(1, "please type: [./fdf] [path/*.fdf]\n", 34);
+		write(1, "Invalid number of arguments\n", 28);
 		return (0);
 	}
 	data = malloc(sizeof(t_fdf));
-	if (!data)
+	data->img = malloc(sizeof(t_img));
+	if (!data || !data->img)
 		return (0);
 	initialize(data);
 	if (!valid_format(argv[1]) || !read_file(argv[1], data))
 	{
 		write(1, "Invalid file name or the file is empty\n", 39);
+		free(data->img);
 		free(data);
 		return (0);
 	}
-	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 1920, 1080, "FDF");
+	work_with_win(data);
 	draw_matrix(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img, 0, 0);
 	mlx_hook(data->win_ptr, 2, 1L << 0, close_window, data);
 	mlx_hook(data->win_ptr, 17, 0, stop_process, data);
 	mlx_loop(data->mlx_ptr);
-	clean_matrix(data);
 }

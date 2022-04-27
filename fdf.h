@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/27 10:45:00 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:08:34 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@
 # include "minilibx_macos/mlx.h"
 # include <math.h>
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}t_img;
+
 typedef struct s_fdf
 {
 	int		width;
@@ -31,6 +40,7 @@ typedef struct s_fdf
 	int		shift_y;
 	void	*mlx_ptr;
 	void	*win_ptr;
+	t_img	*img;
 }t_fdf;
 
 typedef struct s_coordinates
@@ -56,6 +66,7 @@ int		valid(char *line);
 int		ft_wdcounter(const char *str, char separator);
 void	clean_matrix(t_fdf *data);
 int		valid_format(char *file_name);
+void	work_with_win(t_fdf *data);
 
 # define KEY_EXIT 53
 

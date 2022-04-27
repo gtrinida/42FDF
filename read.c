@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/27 11:18:59 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/27 16:11:58 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,32 @@ void	get_hight(char *file_name, t_fdf *data)
 	close(fd);
 }
 
-void	get_width(char *file_name, t_fdf *data)
+int	get_width(char *file_name, t_fdf *data)
 {
 	int		fd;
 	char	*line;
+	int		tmp;
+	int		error;
 
+	error = 0;
+	tmp = 0;
 	fd = open(file_name, O_RDONLY);
 	line = get_next_line(fd);
 	data->width = ft_wdcounter(line, ' ');
 	while (line)
 	{
+		tmp = ft_wdcounter(line, ' ');
+		if (tmp != data->width && !error)
+			error = 1;
 		free(line);
 		line = get_next_line(fd);
 	}
 	if (line)
 		free(line);
 	close(fd);
+	if (error)
+		return (0);
+	return (1);
 }
 
 int	read_file(char *file_name, t_fdf *data)
@@ -100,7 +110,8 @@ int	read_file(char *file_name, t_fdf *data)
 	if (fd == -1 || read(fd, NULL, 0) < 0
 		|| !is_it_empty(file_name))
 		return (0);
-	get_width(file_name, data);
+	if (!get_width(file_name, data))
+		return (0);
 	get_hight(file_name, data);
 	data->z_matrix = ft_calloc_z(data->height, data->width);
 	if (!data->z_matrix)

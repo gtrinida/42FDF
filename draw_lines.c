@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:17:16 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/27 15:14:35 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:57:03 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,6 @@ float	max_steps(float x, float y)
 	else
 		return (y);
 }
-
-// float	sign(float i)
-// {
-// 	if (i < 0)
-// 		return (i *= -1);
-// 	else
-// 		return (i);
-// }
 
 void	draw_line(t_coordinates *pos, t_fdf *data)
 {

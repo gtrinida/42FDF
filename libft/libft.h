@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:41:26 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/26 17:46:38 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/27 16:03:38 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ size_t	ft_strlen(const char *str);
 int		ft_wdcounter(const char *str, char separator);
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 4200
 # endif
 
 #endif

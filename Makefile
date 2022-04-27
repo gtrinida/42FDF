@@ -5,7 +5,7 @@ MINILIBX_DIRECTORY = minilibx_macos
 MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I$(INC) -g -Ilibft
+CFLAGS = -O2 -Wall -Wextra -Werror -I$(INC) -g -Ilibft
 
 NAME = fdf
 SRCS = fdf.c\

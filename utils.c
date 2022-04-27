@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/26 19:02:17 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/27 10:57:29 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,23 +55,23 @@ void	pos_init(t_coordinates *pos)
 	pos->y1 = 0;
 }
 
-int	**ft_calloc_2d(int hight, int width)
+int	**ft_calloc_z(int hight, int width)
 {
-	int	**p;
+	int	**matrix;
 	int	i;
 
 	i = 0;
-	p = ft_calloc(hight, sizeof(int *));
-	if (!p)
+	matrix = ft_calloc(hight, sizeof(int *));
+	if (!matrix)
 		return (0);
 	while (i < hight)
 	{
-		p[i] = ft_calloc(width, sizeof(int));
-		if (!p[i])
+		matrix[i] = ft_calloc(width, sizeof(int));
+		if (!matrix[i])
 			return (0);
 		i++;
 	}
-	return (p);
+	return (matrix);
 }
 
 int	is_it_empty(char *file_name)

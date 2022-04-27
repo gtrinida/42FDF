@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/26 18:52:12 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/27 11:18:59 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	read_file(char *file_name, t_fdf *data)
 		return (0);
 	get_width(file_name, data);
 	get_hight(file_name, data);
-	data->z_matrix = ft_calloc_2d(data->height, data->width);
+	data->z_matrix = ft_calloc_z(data->height, data->width);
 	if (!data->z_matrix)
 		return (0);
 	read_file_utils(file_name, data);

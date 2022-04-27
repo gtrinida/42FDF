@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/26 19:00:09 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/27 10:45:00 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,8 @@ typedef struct s_coordinates
 	int		z1_pos;	
 }t_coordinates;
 
-typedef struct s_matrix
-{
-	float	x;
-	float	y;
-	float	x1;
-	float	y1;
-	int		zoom;
-}t_matrix;
-
 int		read_file(char *file_name, t_fdf *data);
-int		**ft_calloc_2d(int n_rows, int n_cols);
+int		**ft_calloc_z(int n_rows, int n_cols);
 int		is_it_empty(char *file_name);
 int		draw_matrix(t_fdf *data);
 void	pos_init(t_coordinates *pos);

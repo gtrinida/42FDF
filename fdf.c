@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:38:01 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/04/26 15:30:15 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/04/27 11:53:37 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	close_window(int key, t_fdf *data)
 	return (0);
 }
 
-int	close_f(t_fdf *data)
+int	stop_process(t_fdf *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	clean_matrix(data);
@@ -58,8 +58,12 @@ int	main(int argc, char **argv)
 {
 	t_fdf	*data;
 
-	if (argc < 2)
+	if (argc != 2)
+	{
+		write(1, "Invalid number of arguments, ", 29);
+		write(1, "please type: [./fdf] [path/*.fdf]\n", 34);
 		return (0);
+	}
 	data = malloc(sizeof(t_fdf));
 	if (!data)
 		return (0);
@@ -74,7 +78,7 @@ int	main(int argc, char **argv)
 	data->win_ptr = mlx_new_window(data->mlx_ptr, 1920, 1080, "FDF");
 	draw_matrix(data);
 	mlx_hook(data->win_ptr, 2, 1L << 0, close_window, data);
-	mlx_hook(data->win_ptr, 17, 0, close_f, data);
+	mlx_hook(data->win_ptr, 17, 0, stop_process, data);
 	mlx_loop(data->mlx_ptr);
 	clean_matrix(data);
 }
